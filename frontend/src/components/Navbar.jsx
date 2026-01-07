@@ -23,7 +23,7 @@ const Navbar = () => {
         navigate("/email-verify");
       }
     } catch (error) {
-      toast.error(error?.response?.data?.message);
+      toast.error(error.response.data.message);
     }
   };
 
@@ -40,7 +40,7 @@ const Navbar = () => {
         navigate("/");
       }
     } catch (error) {
-      toast.error(error.response?.data?.message);
+      toast.error(error.response.data.message);
     }
   };
 
