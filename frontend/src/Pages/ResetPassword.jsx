@@ -16,18 +16,14 @@ const ResetPassword = () => {
   const [isOtpSubmitted, setIsOtpSubmitted] = useState(false);
 
   const navigate = useNavigate();
-  const { backendUrl, isLoggedIn, userData, getUserData } =
-    useContext(AppContext);
+  const { isLoggedIn, userData, getUserData } = useContext(AppContext);
 
   const handleSubmitEmail = async (e) => {
     try {
       e.preventDefault();
       console.log(email);
 
-      const { data } = await axios.post(
-        backendUrl + "/api/auth/send-reset-otp",
-        { email }
-      );
+      const { data } = await axios.post("/api/auth/send-reset-otp", { email });
 
       if (data.success) {
         toast.success(data.message);
@@ -73,10 +69,11 @@ const ResetPassword = () => {
     try {
       e.preventDefault();
 
-      const { data } = await axios.post(
-        backendUrl + "/api/auth/reset-password",
-        { email, otp, newPassword }
-      );
+      const { data } = await axios.post("/api/auth/reset-password", {
+        email,
+        otp,
+        newPassword,
+      });
       data.success ? toast.success(data.message) : toast.error(data.message);
       data.success && navigate("/login");
     } catch (error) {

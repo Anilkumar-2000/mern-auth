@@ -10,8 +10,7 @@ import { useEffect } from "react";
 const EmailVerify = () => {
   const inputRefs = useRef([]);
 
-  const { backendUrl, isLoggedIn, userData, getUserData } =
-    useContext(AppContext);
+  const { userData, getUserData } = useContext(AppContext);
   const navigate = useNavigate();
 
   const inputHandler = (e, index) => {
@@ -45,7 +44,7 @@ const EmailVerify = () => {
       const otp = otpArray.join("");
       console.log("OTP", otp);
 
-      const { data } = await axios.post(backendUrl + "/api/auth/verify-email", {
+      const { data } = await axios.post("/api/auth/verify-email", {
         otp,
       });
 

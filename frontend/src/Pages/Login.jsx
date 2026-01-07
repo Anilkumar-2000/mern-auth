@@ -18,8 +18,7 @@ const Login = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const navigate = useNavigate();
 
-  const { backendUrl, setIsLoggedIn, getUserData, isLoggedIn } =
-    useContext(AppContext);
+  const { setIsLoggedIn, getUserData, isLoggedIn } = useContext(AppContext);
 
   const [formData, setFormData] = useState(initialFormData);
 
@@ -28,7 +27,7 @@ const Login = () => {
     axios.defaults.withCredentials = true;
     try {
       if (state === "Sign Up") {
-        const { data } = await axios.post(backendUrl + "/api/auth/register", {
+        const { data } = await axios.post("/api/auth/register", {
           name: formData.name,
           email: formData.email,
           password: formData.password,
@@ -44,7 +43,7 @@ const Login = () => {
           toast.error(data.message);
         }
       } else {
-        const { data } = await axios.post(backendUrl + "/api/auth/login", {
+        const { data } = await axios.post("/api/auth/login", {
           email: formData.email,
           password: formData.password,
         });
